@@ -18,12 +18,12 @@
     ];
 
     //El isset es por si tiene valor
-if (isset($_POST["accion"]) && $_POST["accion"] === "añadir") 
-    array_push($productos, $nuevoProducto);
+    if (isset($_POST["accion"]) && $_POST["accion"] === "añadir") 
+        array_push($productos, $nuevoProducto);
 
-print_r($productos);
+    print_r($productos);
 
-//Esto es para que redirija de nuevo a la pagina donde estaba
-header('Location: formularioHTML.html');
+    //Esto es para que redirija de nuevo a la pagina donde estaba
+    header('Location: formularioHTML.html');
 
 ?>
