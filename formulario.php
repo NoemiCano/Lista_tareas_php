@@ -23,4 +23,7 @@ if (isset($_POST["accion"]) && $_POST["accion"] === "añadir")
 
 print_r($productos);
 
+//Esto es para que redirija de nuevo a la pagina donde estaba
+header('Location: formularioHTML.html');
+
 ?>
