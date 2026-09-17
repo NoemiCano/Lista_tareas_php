@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- Action se deja vacio para que cuando se ejecute el php se vuelva a cargar todo el html de nuevo. Si le ponemos dentro el nombre de otro archivo.php se hará la ejecución en otro documento -->
+    <form method="post" action="formulario.php"> 
+        <input type="text" name="nombre" placeholder="¿Que hay que insertar?">
+        <!-- El step con any es para poder meter decimales -->
+        <input type="number" step="any" name="precio" placeholder="Precio"> 
+        <input type="hidden" name="accion" value="añadir">
+        <button type="submit" class="btn-añadir">Añadir</button>
+    </form>
+    
+</body>
+</html>
