@@ -12,10 +12,23 @@ input {
 }
 
 button {
-  border: 1px solid rgb(0, 163, 228);
   border-radius: 8px;
   padding: 8px;
-  background-color: rgb(79, 186, 228);
+}
+
+.button--blue {
+  background-color: rgb(79, 186, 228, 0.281);
+  border: 1px solid rgb(0, 163, 228);
+}
+
+.button--red {
+  background-color: rgba(250, 59, 59, 0.281);
+  border: 1px solid rgb(250, 59, 59);
+}
+
+.button--green {
+  background-color: rgba(32, 192, 67, 0.281);
+  border: 1px solid rgb(32, 192, 67);
 }
 
 .box {
@@ -25,4 +38,49 @@ button {
     border: 1px solid grey;
     border-radius: 8px;
     box-shadow: 2px 2px 5px grey;
+}
+
+/* 1. Reset para quitar márgenes por defecto a la lista */
+ul.lista-tareas, ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 2. Fila principal de la tarea */
+.tarea-item {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* 3. Estilo de la descripción */
+.tarea {
+    display: inline-block;
+    word-break: break-word;          /* Evita que textos muy largos desborden el contenedor */
+    margin-right: 15px;
+}
+
+/* 4. Estilo de tarea completada */
+.completada {
+    text-decoration: line-through !important;
+    color: gray !important;
+}
+
+/* 5. Contenedor de acciones */
+.acciones {
+    display: flex !important;
+    gap: 8px;                        /* Deja un espacio uniforme entre los botones */
+    align-items: center;
+}
+
+/* IMPORTANTE: Hace que los formularios dentro de acciones no rompan la fila */
+.acciones form {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($descripcion)) {
             $nueva_tarea = [
                 'id' => uniqid(),
-                'descripcion' => htmlspecialchars($descripcion),
+                'descripcion' => $descripcion,
                 'completada' => false
             ];
             $_SESSION['tareas'][] = $nueva_tarea;
@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $tarea['completada'] = !$tarea['completada'];
             }
         }
+        unset($tarea);
     }
     
     header('Location: listaTareas.php');
@@ -46,12 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista Tareas PHP</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .completada { text-decoration: line-through; color: gray; }
-        .tarea-item { display: flex; justify-content: space-between; margin-bottom: 8px; }
-        .acciones { display: inline; }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <section class="box">
@@ -60,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST" action="listaTareas.php">
             <input type="hidden" name="accion" value="añadir">
             <input type="text" name="tarea" placeholder="Escribe tu tarea pendiente.." required>
-            <button type="submit">Añadir</button>
+            <button class="button--blue" type="submit">Añadir</button>
         </form>
 
         <div>
@@ -70,23 +66,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <ul>
                     <?php foreach ($_SESSION['tareas'] as $tarea): ?>
                         <li class="tarea-item">
-                            <span class="<?php echo $tarea['completada'] ? 'completada' : ''; ?>">
+                            <!-- Texto con la clase estática 'tarea' y la dinámica 'completada' -->
+                            <span class="tarea <?php echo $tarea['completada'] ? 'completada' : ''; ?>">
                                 <?php echo $tarea['descripcion']; ?>
                             </span>
 
+                            <!-- Bloque de acciones -->
                             <div class="acciones">
-                                <form method="POST" action="listaTareas.php" style="display:inline;">
+                                <form method="POST" action="listaTareas.php">
                                     <input type="hidden" name="accion" value="completar">
                                     <input type="hidden" name="id" value="<?php echo $tarea['id']; ?>">
-                                    <button type="submit">
+                                    <button class="button--green" type="submit">
                                         <?php echo $tarea['completada'] ? 'Desmarcar' : 'Completar'; ?>
                                     </button>
                                 </form>
 
-                                <form method="POST" action="listaTareas.php" style="display:inline;">
+                                <form method="POST" action="listaTareas.php">
                                     <input type="hidden" name="accion" value="eliminar">
                                     <input type="hidden" name="id" value="<?php echo $tarea['id']; ?>">
-                                    <button type="submit">Eliminar</button>
+                                    <button class="button--red" type="submit">Eliminar</button>
                                 </form>
                             </div>
                         </li>
