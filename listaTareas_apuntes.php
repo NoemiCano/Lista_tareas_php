@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // El SERVER es otro array global, 
             // Creamos la nueva tarea con su id, descripción y estado en un array asociativo.
             $nueva_tarea = [
                 'id' => uniqid(), // Genera un ID único automáticamente
-                'descripcion' => htmlspecialchars($descripcion),
+                'descripcion' => htmlspecialchars($descripcion), // la función htmlspecialchars() sirve para convertir caracteres especiales de HTML en sus equivalentes seguros & se conviernte en &amp (ampersand) " se convierte en &quot (comillas dobles)...
                 'completada' => false
             ];
             // La guardamos en el array de la sesión
