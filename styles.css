@@ -80,7 +80,7 @@ ul.lista-tareas, ul {
 
 .completada {
     text-decoration: line-through;
-    color: gray;
+    color: white;
 }
 
 .acciones {
