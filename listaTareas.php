@@ -39,6 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: listaTareas.php');
     exit;
 }
+
+$total_tareas = count($_SESSION['tareas']);
+
+$completadas_tareas = count(array_filter($_SESSION['tareas'], function($tarea) {
+    return $tarea['completada'];
+}));
+
 ?>
 
 <!DOCTYPE html>
@@ -92,6 +99,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </ul>
             <?php endif; ?>
         </div>
+
+        <div class="contador-tareas">
+            <p><?php echo "$completadas_tareas tareas completadas de $total_tareas tareas"; ?></p>
+        </div>
+
     </section>
 </body>
 </html>

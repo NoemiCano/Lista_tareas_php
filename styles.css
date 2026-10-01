@@ -34,8 +34,13 @@ button {
 }
 
 .box {
+    width: 600px;
+    max-width: 90%;
+    box-sizing: border-box;
+    min-height: 500px;
     margin-top: 10%;
-    height: 500px;
+    min-height: 500px;
+    height: max-content;
     padding: 15px;
     box-shadow: 2px 2px 5px grey;
     background-color: rgb(166, 224, 224);
@@ -58,6 +63,13 @@ ul.lista-tareas, ul {
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
+    background-color: rgb(76, 151, 151);
+    border-radius: 15px;
+    border: 1px solid rgb(89, 122, 122);
+    box-shadow: 2px 2px 5px rgb(89, 122, 122);
+    margin: 15px;
+    padding: 15px;
+    color: white;
 }
 
 .tarea {
@@ -81,4 +93,29 @@ ul.lista-tareas, ul {
     display: inline-block;
     margin: 0;
     padding: 0;
+}
+
+.box h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.box > form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.box > form input[type="text"] {
+    flex: 1;
+}
+
+.contador-tareas {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgb(89, 122, 122);
+    text-align: center;
+    font-weight: bold;
+    color: #6d6c6c;
 }
