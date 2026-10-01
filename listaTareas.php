@@ -5,7 +5,7 @@ if (!isset($_SESSION['tareas'])) {
     $_SESSION['tareas'] = [];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {     
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['accion']) && $_POST['accion'] === 'añadir') {
         $descripcion = trim($_POST['tarea']); 
