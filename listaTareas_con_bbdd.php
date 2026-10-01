@@ -2,7 +2,6 @@
 session_start();
 require_once 'db.php';
 
-// Control de acceso: si no está logueado, redirigir al login
 if (!isset($_SESSION['usuario'])) {
     header('Location: login_con_bbdd.php');
     exit;
@@ -10,7 +9,6 @@ if (!isset($_SESSION['usuario'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // 1. Añadir tarea
     if (isset($_POST['accion']) && $_POST['accion'] === 'añadir') {
         $descripcion = trim($_POST['tarea']); 
         if (!empty($descripcion)) {
@@ -19,14 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // 2. Eliminar tarea
     if (isset($_POST['accion']) && $_POST['accion'] === 'eliminar') {
         $id_eliminar = $_POST['id'];
         $stmt = $pdo->prepare("DELETE FROM tareas WHERE id = :id");
         $stmt->execute(['id' => $id_eliminar]);
     }
 
-    // 3. Completar / Desmarcar tarea (Invierte el valor de 1 a 0 y viceversa)
     if (isset($_POST['accion']) && $_POST['accion'] === 'completar') {
         $id_completar = $_POST['id'];
         $stmt = $pdo->prepare("UPDATE tareas SET completada = NOT completada WHERE id = :id");
@@ -37,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Consultar todas las tareas guardadas en MySQL
 $stmt = $pdo->query("SELECT * FROM tareas ORDER BY id DESC");
 $tareas = $stmt->fetchAll();
 ?>
@@ -67,12 +62,10 @@ $tareas = $stmt->fetchAll();
                 <ul>
                     <?php foreach ($tareas as $tarea): ?>
                         <li class="tarea-item">
-                            <!-- Texto con la clase estática 'tarea' y la dinámica 'completada' -->
                             <span class="tarea <?php echo $tarea['completada'] ? 'completada' : ''; ?>">
                                 <?php echo htmlspecialchars($tarea['descripcion']); ?>
                             </span>
 
-                            <!-- Bloque de acciones -->
                             <div class="acciones">
                                 <form method="POST" action="listaTareas_con_bbdd.php">
                                     <input type="hidden" name="accion" value="completar">

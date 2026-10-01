@@ -34,7 +34,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Separa los inputs y el botón entre sí */
+    gap: 15px;
     width: 100%;
 }
 

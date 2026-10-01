@@ -73,12 +73,10 @@ $completadas_tareas = count(array_filter($_SESSION['tareas'], function($tarea) {
                 <ul>
                     <?php foreach ($_SESSION['tareas'] as $tarea): ?>
                         <li class="tarea-item">
-                            <!-- Texto con la clase estática 'tarea' y la dinámica 'completada' -->
                             <span class="tarea <?php echo $tarea['completada'] ? 'completada' : ''; ?>">
                                 <?php echo $tarea['descripcion']; ?>
                             </span>
 
-                            <!-- Bloque de acciones -->
                             <div class="acciones">
                                 <form method="POST" action="listaTareas.php">
                                     <input type="hidden" name="accion" value="completar">

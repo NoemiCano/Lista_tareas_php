@@ -9,7 +9,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contrasena_ingresada = $_POST['contrasena'] ?? '';
 
     if (!empty($usuario_ingresado) && !empty($contrasena_ingresada)) {
-        // Consultar en MySQL en lugar del array
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE usuario = :usuario AND contrasena = :contrasena");
         $stmt->execute([
             'usuario' => $usuario_ingresado,
